@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ahmed Al-Zaim | أحمد الزعيم</title>
+<meta name="description" content="Ahmed Al-Zaim — Aeronautical Mechanical Engineer with 25+ years of experience in aerodynamics, fluid mechanics and engineering consulting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f8fb;
+    --surface: #ffffff;
+    --surface-2: #eef2f7;
+    --text: #0f1b2d;
+    --muted: #5a6b82;
+    --line: #dde4ee;
+    --accent: #1f6feb;
+    --accent-2: #0ea5e9;
+    --accent-soft: rgba(31, 111, 235, .10);
+    --hero-from: #0b1a30;
+    --hero-to: #12355e;
+    --shadow: 0 10px 30px rgba(15, 27, 45, .08);
+    --radius: 16px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a1220; --surface: #111c2e; --surface-2: #16243a; --text: #e6edf6;
+      --muted: #94a5bd; --line: #22334d; --accent: #4c8dff; --accent-2: #38bdf8;
+      --accent-soft: rgba(76, 141, 255, .14); --hero-from: #060d19; --hero-to: #0e2647;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a1220; --surface: #111c2e; --surface-2: #16243a; --text: #e6edf6;
+    --muted: #94a5bd; --line: #22334d; --accent: #4c8dff; --accent-2: #38bdf8;
+    --accent-soft: rgba(76, 141, 255, .14); --hero-from: #060d19; --hero-to: #0e2647;
+    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: "Cairo", "Inter", system-ui, sans-serif;
+    line-height: 1.75; overflow-x: hidden;
+    transition: background .3s, color .3s;
+  }
+  html[lang="en"] body { font-family: "Inter", "Cairo", system-ui, sans-serif; line-height: 1.65; }
+  html[lang="ar"] .en, html[lang="en"] .ar { display: none !important; }
+  a { color: inherit; text-decoration: none; }
+  .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+
+  /* Nav */
+  .nav {
+    position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 50;
+    transition: background .3s, box-shadow .3s;
+  }
+  .nav.scrolled { background: color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 12px; }
+  .brand { font-weight: 800; font-size: 1.15rem; color: #fff; display: flex; align-items: center; gap: 10px; }
+  .nav.scrolled .brand { color: var(--text); }
+  .brand-mark {
+    width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; font-size: .95rem;
+  }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a {
+    padding: 8px 12px; border-radius: 8px; font-weight: 600; font-size: .92rem;
+    color: rgba(255,255,255,.85); transition: background .2s, color .2s;
+  }
+  .nav.scrolled .nav-links a { color: var(--muted); }
+  .nav-links a:hover { background: rgba(255,255,255,.12); color: #fff; }
+  .nav.scrolled .nav-links a:hover { background: var(--accent-soft); color: var(--accent); }
+  .nav-actions { display: flex; gap: 8px; align-items: center; }
+  .icon-btn {
+    height: 38px; min-width: 38px; padding: 0 10px; border-radius: 10px; cursor: pointer;
+    border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: #fff;
+    font: 700 .85rem "Inter", sans-serif; display: grid; place-items: center; transition: .2s;
+  }
+  .nav.scrolled .icon-btn { border-color: var(--line); background: var(--surface); color: var(--text); }
+  .icon-btn:hover { transform: translateY(-1px); }
+  .icon-btn svg { width: 18px; height: 18px; }
+  .menu-btn { display: none; }
+
+  /* Hero */
+  .hero {
+    position: relative; overflow: hidden; color: #fff;
+    background: radial-gradient(1200px 500px at 80% -10%, rgba(56,189,248,.25), transparent 60%),
+                linear-gradient(160deg, var(--hero-from), var(--hero-to));
+    padding: 140px 0 110px;
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: .12; pointer-events: none;
+    background-image: linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  }
+  .hero-inner { position: relative; display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); font-size: .85rem; font-weight: 600;
+  }
+  .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #34d399; box-shadow: 0 0 0 4px rgba(52,211,153,.25); }
+  .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 800; line-height: 1.15; margin: 18px 0 8px; letter-spacing: -.01em; }
+  .hero .role { font-size: clamp(1.1rem, 2.4vw, 1.4rem); font-weight: 600; color: #9cc8ff; }
+  .hero p.lead { margin-top: 16px; max-width: 560px; color: rgba(255,255,255,.8); font-size: 1.05rem; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 12px;
+    font-weight: 700; font-size: .95rem; transition: transform .2s, box-shadow .2s, background .2s;
+  }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: 0 8px 24px rgba(31,111,235,.35); }
+  .btn-ghost { border: 1px solid rgba(255,255,255,.3); color: #fff; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-ghost:hover { background: rgba(255,255,255,.1); }
+  .hero-art { position: relative; }
+  .hero-art svg { width: 100%; height: auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,.3)); }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 40px; max-width: 560px; }
+  .stat { padding: 16px; border-radius: 14px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); }
+  .stat b { display: block; font: 800 1.6rem "Inter", sans-serif; }
+  .stat span { font-size: .85rem; color: rgba(255,255,255,.72); }
+
+  /* Sections */
+  section { padding: 90px 0; }
+  .section-head { margin-bottom: 40px; }
+  .eyebrow { color: var(--accent); font-weight: 700; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; }
+  .section-head h2 { font-size: clamp(1.7rem, 3.5vw, 2.3rem); font-weight: 800; margin-top: 4px; }
+  .section-head .bar { width: 56px; height: 4px; border-radius: 4px; margin-top: 12px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 28px;
+  }
+  .alt { background: var(--surface-2); }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; }
+  .about-grid p { font-size: 1.08rem; color: var(--text); }
+  .about-grid p + p { margin-top: 14px; color: var(--muted); }
+  .info-list { list-style: none; display: grid; gap: 16px; }
+  .info-list li { display: flex; gap: 14px; align-items: center; }
+  .info-ico {
+    flex: none; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--accent-soft); color: var(--accent);
+  }
+  .info-ico svg { width: 20px; height: 20px; }
+  .info-list small { display: block; color: var(--muted); font-size: .8rem; }
+  .info-list strong { font-weight: 600; }
+  .ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+
+  /* Timeline */
+  .timeline { position: relative; display: grid; gap: 22px; padding-inline-start: 34px; }
+  .timeline::before {
+    content: ""; position: absolute; inset-block: 8px; inset-inline-start: 10px; width: 2px;
+    background: linear-gradient(var(--accent), var(--accent-2), transparent);
+  }
+  .tl-item { position: relative; }
+  .tl-item::before {
+    content: ""; position: absolute; inset-inline-start: -31px; top: 30px; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--surface); border: 4px solid var(--accent); box-shadow: 0 0 0 5px var(--accent-soft);
+  }
+  .tl-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; align-items: baseline; }
+  .tl-item h3 { font-size: 1.2rem; font-weight: 700; }
+  .period {
+    font: 700 .82rem "Inter", sans-serif; padding: 4px 12px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent); white-space: nowrap; direction: ltr;
+  }
+  .tl-item .sub { color: var(--accent); font-weight: 600; margin-top: 2px; }
+  .tl-item ul { margin-top: 12px; padding-inline-start: 20px; color: var(--muted); display: grid; gap: 6px; }
+  .tl-item li::marker { color: var(--accent); }
+
+  /* Education */
+  .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .edu-card { position: relative; overflow: hidden; transition: transform .25s, box-shadow .25s; }
+  .edu-card:hover { transform: translateY(-4px); }
+  .edu-card .edu-ico {
+    width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 18px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff;
+  }
+  .edu-card .edu-ico svg { width: 26px; height: 26px; }
+  .edu-card h3 { font-size: 1.2rem; font-weight: 700; }
+  .edu-card p { color: var(--muted); margin-top: 6px; }
+  .edu-card .period { display: inline-block; margin-top: 14px; }
+
+  /* Skills */
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .skills-grid h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+  .skills-grid h3 svg { width: 22px; height: 22px; color: var(--accent); }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    padding: 9px 16px; border-radius: 10px; font-weight: 600; font-size: .93rem;
+    background: var(--surface-2); border: 1px solid var(--line); transition: .2s;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  .lang-row { margin-top: 22px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .lang { display: flex; justify-content: space-between; align-items: center; }
+  .lang + .lang { margin-top: 14px; }
+  .meter { flex: 1; height: 8px; border-radius: 8px; background: var(--surface-2); margin-inline-start: 16px; max-width: 220px; overflow: hidden; }
+  .meter i { display: block; height: 100%; border-radius: 8px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+
+  /* Contact */
+  .contact-wrap {
+    border-radius: 24px; padding: 48px 32px; color: #fff; text-align: center; position: relative; overflow: hidden;
+    background: radial-gradient(800px 300px at 20% 0%, rgba(56,189,248,.25), transparent 60%),
+                linear-gradient(140deg, var(--hero-from), var(--hero-to));
+  }
+  .contact-wrap h2 { font-size: clamp(1.7rem, 3.5vw, 2.3rem); font-weight: 800; }
+  .contact-wrap > p { color: rgba(255,255,255,.78); margin: 10px auto 0; max-width: 560px; }
+  .contact-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 34px; }
+  .c-card {
+    padding: 20px 14px; border-radius: 16px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14);
+    display: grid; justify-items: center; gap: 8px; transition: .25s; min-width: 0;
+  }
+  a.c-card:hover { background: rgba(255,255,255,.14); transform: translateY(-3px); }
+  .c-card svg { width: 26px; height: 26px; color: #9cc8ff; }
+  .c-card small { color: rgba(255,255,255,.65); font-size: .8rem; }
+  .c-card strong { font-weight: 600; font-size: .92rem; overflow-wrap: anywhere; }
+
+  footer { padding: 32px 0; text-align: center; color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .plane { animation: none !important; }
+  }
+  .plane { animation: float 6s ease-in-out infinite; transform-origin: center; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero-inner, .about-grid { grid-template-columns: 1fr; }
+    .hero-art { max-width: 420px; margin: 0 auto; order: -1; }
+    .contact-cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 760px) {
+    .menu-btn { display: grid; }
+    .nav-links {
+      position: absolute; top: 68px; inset-inline: 12px; flex-direction: column; padding: 10px;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow);
+      display: none;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a, .nav.scrolled .nav-links a { color: var(--text); display: block; }
+    .nav-links a:hover { background: var(--accent-soft); color: var(--accent); }
+    .edu-grid, .skills-grid, .lang-row { grid-template-columns: 1fr; }
+    section { padding: 64px 0; }
+    .hero { padding: 110px 0 70px; }
+    .card { padding: 22px; }
+    .stats { gap: 8px; }
+    .stat { padding: 12px; }
+    .stat b { font-size: 1.3rem; }
+  }
+  @media (max-width: 420px) {
+    .contact-cards { grid-template-columns: 1fr; }
+    .contact-wrap { padding: 36px 18px; }
+  }
+
+  @media print {
+    .nav, .hero-art, .hero-cta, .hero-grid { display: none !important; }
+    .hero, .contact-wrap { background: none !important; color: #000; padding: 20px 0; }
+    .hero .role, .hero p.lead, .stat span, .contact-wrap > p, .c-card small { color: #333 !important; }
+    .reveal { opacity: 1; transform: none; }
+    section { padding: 24px 0; }
+    .card { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark"><span class="ar">أ.ز</span><span class="en">AZ</span></span>
+      <span class="ar">أحمد الزعيم</span><span class="en">Ahmed Al-Zaim</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about"><span class="ar">نبذة عني</span><span class="en">About</span></a></li>
+      <li><a href="#experience"><span class="ar">الخبرات</span><span class="en">Experience</span></a></li>
+      <li><a href="#education"><span class="ar">التعليم</span><span class="en">Education</span></a></li>
+      <li><a href="#skills"><span class="ar">المهارات</span><span class="en">Skills</span></a></li>
+      <li><a href="#contact"><span class="ar">تواصل</span><span class="en">Contact</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn" id="langBtn" aria-label="Switch language"><span class="ar">EN</span><span class="en">ع</span></button>
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="container hero-inner">
+    <div>
+      <span class="badge"><span class="dot"></span>
+        <span class="ar">متاح للاستشارات الهندسية</span><span class="en">Available for engineering consulting</span>
+      </span>
+      <h1><span class="ar">أحمد الزعيم</span><span class="en">Ahmed Al-Zaim</span></h1>
+      <div class="role"><span class="ar">مهندس ميكانيك طيران</span><span class="en">Aeronautical Mechanical Engineer</span></div>
+      <p class="lead">
+        <span class="ar">أكثر من 25 عامًا من الخبرة في الهندسة الميكانيكية وهندسة الطيران، متخصص في ميكانيك الموائع وإيروديناميك الأجسام الطائرة والحسابات العددية المتقدمة.</span>
+        <span class="en">25+ years of experience in mechanical and aeronautical engineering, specializing in fluid mechanics, aerodynamics of flying bodies and advanced numerical computation.</span>
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+          <span class="ar">تواصل معي</span><span class="en">Get in touch</span>
+        </a>
+        <a href="#experience" class="btn btn-ghost">
+          <span class="ar">استعرض خبراتي</span><span class="en">View experience</span>
+        </a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>25+</b><span class="ar">عامًا من الخبرة</span><span class="en">Years of experience</span></div>
+        <div class="stat"><b>26</b><span class="ar">عامًا في البحث العلمي</span><span class="en">Years in research</span></div>
+        <div class="stat"><b>2019</b><span class="ar">مكتب استشاري خاص</span><span class="en">Own consulting office</span></div>
+      </div>
+    </div>
+
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 400 340" fill="none">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#1f6feb"/></linearGradient>
+          <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9cc8ff" stop-opacity="0"/><stop offset="1" stop-color="#9cc8ff" stop-opacity=".8"/></linearGradient>
+        </defs>
+        <circle cx="200" cy="170" r="150" stroke="rgba(255,255,255,.12)" stroke-dasharray="4 8"/>
+        <circle cx="200" cy="170" r="105" stroke="rgba(255,255,255,.1)"/>
+        <!-- streamlines over an airfoil -->
+        <g stroke="url(#g2)" stroke-width="2" stroke-linecap="round">
+          <path d="M20 120 C120 120, 150 92, 240 96 S360 120, 390 122"/>
+          <path d="M20 145 C120 145, 150 128, 240 130 S360 146, 390 147"/>
+          <path d="M20 205 C120 205, 160 212, 240 210 S360 200, 390 199"/>
+          <path d="M20 230 C120 230, 160 236, 240 234 S360 226, 390 225"/>
+        </g>
+        <g class="plane">
+          <path d="M70 175 C110 140, 220 140, 330 168 C250 182, 140 196, 70 175 Z" fill="url(#g1)"/>
+          <path d="M70 175 C110 140, 220 140, 330 168" stroke="#fff" stroke-opacity=".6" stroke-width="2"/>
+          <!-- pressure markers -->
+          <g fill="#fff" fill-opacity=".85">
+            <circle cx="120" cy="158" r="3"/><circle cx="170" cy="150" r="3"/><circle cx="220" cy="151" r="3"/><circle cx="270" cy="158" r="3"/>
+          </g>
+          <path d="M180 140 v-30 M180 110 l-7 10 M180 110 l7 10" stroke="#34d399" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <text x="200" y="300" text-anchor="middle" fill="rgba(255,255,255,.55)" font-family="Inter, sans-serif" font-size="13" letter-spacing="3">AERODYNAMICS · CFD</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="ar">من أنا</span><span class="en">Who I am</span></div>
+        <h2><span class="ar">نبذة عني</span><span class="en">About Me</span></h2>
+        <div class="bar"></div>
+      </div>
+      <div class="about-grid">
+        <div class="card reveal">
+          <p>
+            <span class="ar">مهندس ميكانيك طيران مع خبرة تزيد عن 25 عامًا في مجال الهندسة الميكانيكية وهندسة الطيران. عملت في مركز الدراسات والبحوث العلمية، وأدير حاليًا مكتبًا هندسيًا استشاريًا.</span>
+            <span class="en">Aeronautical mechanical engineer with over 25 years of experience in mechanical and aeronautical engineering. I worked at the Scientific Studies and Research Center and currently run a consulting engineering office.</span>
+          </p>
+          <p>
+            <span class="ar">تتركز خبرتي في ميكانيك الموائع وإيروديناميك الأجسام الطائرة وإجراء الحسابات العددية المتقدمة باستخدام برامج حاسوبية متخصصة، إلى جانب الرسم الهندسي وتحليل النظم.</span>
+            <span class="en">My expertise centres on fluid mechanics, the aerodynamics of flying bodies and advanced numerical computation using specialized software, alongside engineering drawing and systems analysis.</span>
+          </p>
+        </div>
+        <div class="card reveal">
+          <ul class="info-list">
+            <li>
+              <span class="info-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+              <div><small><span class="ar">مواليد</span><span class="en">Born</span></small><strong><span class="ar">حماه، 1968</span><span class="en">Hama, 1968</span></strong></div>
+            </li>
+            <li>
+              <span class="info-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <div><small><span class="ar">الموقع</span><span class="en">Location</span></small><strong><span class="ar">حماه، سوريا</span><span class="en">Hama, Syria</span></strong></div>
+            </li>
+            <li>
+              <span class="info-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></span>
+              <div><small><span class="ar">البريد الإلكتروني</span><span class="en">Email</span></small><strong><a href="mailto:azaim9@gmail.com" class="ltr">azaim9@gmail.com</a></strong></div>
+            </li>
+            <li>
+              <span class="info-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span>
+              <div><small><span class="ar">اللغات</span><span class="en">Languages</span></small><strong><span class="ar">العربية، الإنجليزية</span><span class="en">Arabic, English</span></strong></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="ar">المسيرة المهنية</span><span class="en">Career</span></div>
+        <h2><span class="ar">الخبرات المهنية</span><span class="en">Professional Experience</span></h2>
+        <div class="bar"></div>
+      </div>
+      <div class="timeline">
+        <article class="tl-item card reveal">
+          <div class="tl-top">
+            <h3><span class="ar">مكتب هندسي استشاري</span><span class="en">Consulting Engineering Office</span></h3>
+            <span class="period"><span class="ar">2019 – الآن</span><span class="en">2019 – Present</span></span>
+          </div>
+          <div class="sub"><span class="ar">مدير ومؤسس</span><span class="en">Founder &amp; Manager</span></div>
+          <ul>
+            <li><span class="ar">إدارة مكتب هندسي استشاري مسجل في نقابة المهندسين – فرع حماه.</span><span class="en">Managing a consulting engineering office registered with the Syrian Engineers Syndicate – Hama branch.</span></li>
+          </ul>
+        </article>
+
+        <article class="tl-item card reveal">
+          <div class="tl-top">
+            <h3><span class="ar">مركز الدراسات والبحوث العلمية</span><span class="en">Scientific Studies &amp; Research Center</span></h3>
+            <span class="period">1992 – 2018</span>
+          </div>
+          <div class="sub"><span class="ar">مهندس ميكانيك طيران</span><span class="en">Aeronautical Mechanical Engineer</span></div>
+          <ul>
+            <li><span class="ar">العمل في مجال هندسة ميكانيك الطيران وميكانيك الموائع (إيروديناميك الأجسام الطائرة).</span><span class="en">Worked in aeronautical mechanical engineering and fluid mechanics (aerodynamics of flying bodies).</span></li>
+            <li><span class="ar">إجراء الحسابات العددية المتقدمة باستخدام برامج حاسوبية متخصصة.</span><span class="en">Performed advanced numerical computations using specialized software.</span></li>
+            <li><span class="ar">المشاركة في مؤتمر ميكانيك الموائع – أثينا، اليونان 2007.</span><span class="en">Participated in a Fluid Mechanics conference – Athens, Greece (2007).</span></li>
+            <li><span class="ar">استقالة من البحوث العلمية عام 2018.</span><span class="en">Resigned from the center in 2018.</span></li>
+          </ul>
+        </article>
+
+        <article class="tl-item card reveal">
+          <div class="tl-top">
+            <h3><span class="ar">دورة تدريبية – جامعة بكين</span><span class="en">Training Course – Beijing University</span></h3>
+            <span class="period">2002</span>
+          </div>
+          <div class="sub"><span class="ar">بكين، الصين</span><span class="en">Beijing, China</span></div>
+          <ul>
+            <li><span class="ar">دورة تدريبية متخصصة في إيروديناميك الأجسام الطائرة لمدة شهر.</span><span class="en">One-month specialized course in the aerodynamics of flying bodies.</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="ar">المؤهلات</span><span class="en">Qualifications</span></div>
+        <h2><span class="ar">التعليم</span><span class="en">Education</span></h2>
+        <div class="bar"></div>
+      </div>
+      <div class="edu-grid">
+        <div class="card edu-card reveal">
+          <div class="edu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+          <h3><span class="ar">إجازة في الهندسة الميكانيكية</span><span class="en">B.Sc. in Mechanical Engineering</span></h3>
+          <p><span class="ar">جامعة حلب</span><span class="en">University of Aleppo</span></p>
+          <span class="period">1986 – 1991</span>
+        </div>
+        <div class="card edu-card reveal">
+          <div class="edu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></div>
+          <h3><span class="ar">دبلوم هندسة طيران</span><span class="en">Diploma in Aeronautical Engineering</span></h3>
+          <p><span class="ar">المعهد العالي للعلوم التطبيقية – مركز الدراسات والبحوث العلمية، حلب</span><span class="en">Higher Institute for Applied Sciences – Scientific Studies &amp; Research Center, Aleppo</span></p>
+          <span class="period">1992 – 1995</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="ar">الكفاءات</span><span class="en">Expertise</span></div>
+        <h2><span class="ar">المهارات</span><span class="en">Skills</span></h2>
+        <div class="bar"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="card reveal">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+            <span class="ar">الهندسة</span><span class="en">Engineering</span>
+          </h3>
+          <div class="chips">
+            <span class="chip"><span class="ar">هندسة الطيران</span><span class="en">Aeronautical Engineering</span></span>
+            <span class="chip"><span class="ar">ميكانيك الموائع</span><span class="en">Fluid Mechanics</span></span>
+            <span class="chip"><span class="ar">إيروديناميك الأجسام الطائرة</span><span class="en">Aerodynamics</span></span>
+            <span class="chip"><span class="ar">الحسابات العددية المتقدمة</span><span class="en">Advanced Numerical Computation</span></span>
+            <span class="chip"><span class="ar">الرسم الهندسي</span><span class="en">Engineering Drawing</span></span>
+            <span class="chip"><span class="ar">الاستشارات الهندسية</span><span class="en">Engineering Consulting</span></span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+            <span class="ar">البرمجيات والبرمجة</span><span class="en">Software &amp; Programming</span>
+          </h3>
+          <div class="chips">
+            <span class="chip"><span class="ar">أوتوكاد 2D و 3D</span><span class="en">AutoCAD 2D &amp; 3D</span></span>
+            <span class="chip"><span class="ar">برمجة فورتران</span><span class="en">Fortran</span></span>
+            <span class="chip"><span class="ar">برمجة باسكال ودلفي</span><span class="en">Pascal &amp; Delphi</span></span>
+            <span class="chip"><span class="ar">تحليل نظم معلوماتية</span><span class="en">Information Systems Analysis</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="lang-row">
+        <div class="card reveal">
+          <h3 style="font-weight:700;margin-bottom:16px"><span class="ar">اللغات</span><span class="en">Languages</span></h3>
+          <div class="lang"><span><span class="ar">العربية</span><span class="en">Arabic</span></span><span class="meter"><i style="width:100%"></i></span></div>
+          <div class="lang"><span><span class="ar">الإنجليزية</span><span class="en">English</span></span><span class="meter"><i style="width:70%"></i></span></div>
+        </div>
+        <div class="card reveal">
+          <h3 style="font-weight:700;margin-bottom:16px"><span class="ar">محطات بارزة</span><span class="en">Highlights</span></h3>
+          <ul class="info-list" style="gap:10px">
+            <li><span class="period">2007</span><span><span class="ar">مؤتمر ميكانيك الموائع – أثينا</span><span class="en">Fluid Mechanics Conference – Athens</span></span></li>
+            <li><span class="period">2002</span><span><span class="ar">دورة إيروديناميك – جامعة بكين</span><span class="en">Aerodynamics course – Beijing University</span></span></li>
+            <li><span class="period">2019</span><span><span class="ar">تأسيس مكتب هندسي استشاري</span><span class="en">Founded consulting engineering office</span></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-wrap reveal">
+        <h2><span class="ar">لنعمل معًا</span><span class="en">Let's Work Together</span></h2>
+        <p>
+          <span class="ar">للاستشارات الهندسية والمشاريع في مجالات الهندسة الميكانيكية وهندسة الطيران، يسعدني تواصلكم.</span>
+          <span class="en">For engineering consulting and projects in mechanical and aeronautical engineering, I'd be glad to hear from you.</span>
+        </p>
+        <div class="contact-cards">
+          <a class="c-card" href="mailto:azaim9@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+            <small><span class="ar">البريد الإلكتروني</span><span class="en">Email</span></small>
+            <strong class="ltr">azaim9@gmail.com</strong>
+          </a>
+          <a class="c-card" href="tel:+963933127450">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            <small><span class="ar">الهاتف</span><span class="en">Phone</span></small>
+            <strong class="ltr">+963 933 127 450</strong>
+          </a>
+          <a class="c-card" href="https://wa.me/963933127450" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z"/></svg>
+            <small><span class="ar">واتساب</span><span class="en">WhatsApp</span></small>
+            <strong><span class="ar">راسلني</span><span class="en">Message me</span></strong>
+          </a>
+          <div class="c-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <small><span class="ar">الموقع</span><span class="en">Location</span></small>
+            <strong><span class="ar">حماه، سوريا</span><span class="en">Hama, Syria</span></strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    © <span id="year">2026</span>
+    <span class="ar">أحمد الزعيم — مهندس ميكانيك طيران. جميع الحقوق محفوظة.</span>
+    <span class="en">Ahmed Al-Zaim — Aeronautical Mechanical Engineer. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+
+    // Language
+    function setLang(l) {
+      root.lang = l;
+      root.dir = l === 'ar' ? 'rtl' : 'ltr';
+      document.title = l === 'ar' ? 'أحمد الزعيم | مهندس ميكانيك طيران' : 'Ahmed Al-Zaim | Aeronautical Mechanical Engineer';
+      store('lang', l);
+    }
+    setLang(store('lang') || 'ar');
+    document.getElementById('langBtn').addEventListener('click', function () {
+      setLang(root.lang === 'ar' ? 'en' : 'ar');
+    });
+
+    // Theme
+    var savedTheme = store('theme');
+    if (savedTheme) root.setAttribute('data-theme', savedTheme);
+    document.getElementById('themeBtn').addEventListener('click', function () {
+      var cur = root.getAttribute('data-theme') ||
+        (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = cur === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      store('theme', next);
+    });
+
+    // Nav background on scroll
+    var nav = document.getElementById('nav');
+    function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Mobile menu
+    var links = document.getElementById('navLinks');
+    document.getElementById('menuBtn').addEventListener('click', function () { links.classList.toggle('open'); });
+    links.addEventListener('click', function (e) { if (e.target.closest('a')) links.classList.remove('open'); });
+
+    // Reveal on scroll
+    var items = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: 0.12 });
+      items.forEach(function (el) { io.observe(el); });
+    } else {
+      items.forEach(function (el) { el.classList.add('in'); });
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>
