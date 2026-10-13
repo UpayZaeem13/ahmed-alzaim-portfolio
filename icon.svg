@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#16181d"/>
+  <path d="M96 300 C104 268 156 248 246 246 C336 244 400 272 430 300 C380 306 320 314 246 315 C170 316 104 314 96 300 Z" fill="none" stroke="#c2410c" stroke-width="14" stroke-linejoin="round"/>
+  <text x="256" y="214" text-anchor="middle" font-family="IBM Plex Mono, Consolas, monospace" font-weight="500" font-size="150" fill="#f3f1ec">AZ</text>
+</svg>
